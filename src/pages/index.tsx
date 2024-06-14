@@ -1,4 +1,4 @@
-import type { TestContractAbi } from "@/sway-api";
+// import type { TestContractAbi } from "@/sway-api";
 import { TestContractAbi__factory } from "@/sway-api";
 import contractIds from "@/sway-api/contract-ids.json";
 import { FuelLogo } from "@/components/FuelLogo";
@@ -22,7 +22,7 @@ const hasScript = process.env.NEXT_PUBLIC_HAS_SCRIPT === "true";
 
 export default function Home() {
   const { wallet, walletBalance, refreshWalletBalance } = useActiveWallet();
-  const [contract, setContract] = useState<TestContractAbi>();
+  const [contract, setContract] = useState<any>();
   const [counter, setCounter] = useState<number>();
 
   useAsync(async () => {
