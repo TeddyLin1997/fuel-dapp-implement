@@ -25,10 +25,6 @@ export default function Home() {
   const [contract, setContract] = useState<TestContractAbi>();
   const [counter, setCounter] = useState<number>();
 
-  /**
-   * useAsync is a wrapper around useEffect that allows us to run asynchronous code
-   * See: https://github.com/streamich/react-use/blob/master/docs/useAsync.md
-   */
   useAsync(async () => {
     if (hasContract && wallet) {
       const testContract = TestContractAbi__factory.connect(contractId, wallet);
@@ -40,15 +36,8 @@ export default function Home() {
 
   // eslint-disable-next-line consistent-return
   const onIncrementPressed = async () => {
-    if (!contract) {
-      return toast.error("Contract not loaded");
-    }
-
-    if (walletBalance?.eq(0)) {
-      return toast.error(
-        "Your wallet does not have enough funds. Please click the 'Top-up Wallet' button in the top right corner, or use the local faucet.",
-      );
-    }
+    if (!contract) return toast.error("Contract not loaded");
+    if (walletBalance?.eq(0)) return toast.error("Your wallet does not have enough funds. Please click the 'Top-up Wallet' button in the top right corner, or use the local faucet.");
 
     const { value } = await contract.functions.increment_counter(bn(1)).call();
     setCounter(value.toNumber());
@@ -56,9 +45,26 @@ export default function Home() {
     await refreshWalletBalance?.();
   };
 
+  const onDecrementPressed = async () => {
+    if (!contract) {
+      return toast.error("Contract not loaded");
+    }
+ 
+    if (walletBalance?.eq(0)) {
+      return toast.error(
+        "Your wallet does not have enough funds. Please click the 'Top-up Wallet' button in the top right corner, or use the local faucet.",
+      );
+    }
+ 
+    const { value } = await contract.functions.decrement_counter(bn(1)).call();
+    setCounter(value.toNumber());
+ 
+    await refreshWalletBalance?.();
+  };
+
   return (
     <>
-      <div className="flex gap-4 items-center">
+      <div className="flex flex-col items-center gap-4">
         <FuelLogo />
         <h1 className="text-2xl font-semibold ali">Welcome to Fuel</h1>
       </div>
@@ -86,27 +92,19 @@ export default function Home() {
             {counter}
           </span>
 
-          <Button onClick={onIncrementPressed} className="mt-6">
-            Increment Counter
-          </Button>
+          <div className="flex gap-6">
+            <Button onClick={onIncrementPressed} className="mt-2">+ Increment</Button>
+
+            <Button onClick={onDecrementPressed} className="mt-2">- Decrement</Button>
+          </div>
         </>
       )}
 
-      {hasPredicate && (
-        <Link href="/predicate" className="mt-4">
-          Predicate Example
-        </Link>
-      )}
-
-      {hasScript && (
-        <Link href="/script" className="mt-4">
-          Script Example
-        </Link>
-      )}
-
-      <Link href="https://docs.fuel.network" target="_blank" className="mt-12">
-        Fuel Docs
-      </Link>
+      <div className="flex items-center gap-4">
+        {hasPredicate && <Link href="/predicate">Predicate Example</Link>}
+        {hasScript && <Link href="/script">Script Example</Link>}
+        <Link href="https://docs.fuel.network" target="_blank">Fuel Docs</Link>
+      </div>
     </>
   );
 }

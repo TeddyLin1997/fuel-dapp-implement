@@ -11,11 +11,12 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@fuels/connectors": "^0.2.2",
-    "@fuels/react": "^0.18.1",
-    "fuels": "0.89.1",
-    "@tanstack/react-query": "^5.29.2",
+    "@fuel-js/wallet": "^0.5.8",
+    "@fuels/connectors": "^0.5.0",
+    "@fuels/react": "^0.20.0",
+    "@tanstack/react-query": "^5.45.0",
     "dotenv": "^16.4.5",
+    "fuels": "^0.89.2",
     "next": "14.2.2",
     "react": "^18.2",
     "react-dom": "^18.2",
