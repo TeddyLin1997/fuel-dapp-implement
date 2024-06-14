@@ -1,9 +1,9 @@
-import { Button } from "@/components/Button";
-import { FuelLogo } from "@/components/FuelLogo";
-import { Input } from "@/components/Input";
-import { Link } from "@/components/Link";
-import { useActiveWallet } from "@/hooks/useActiveWallet";
-import { TestScriptAbi__factory } from "@/sway-api";
+import { Button } from "../components/Button";
+import { FuelLogo } from "../components/FuelLogo";
+import { Input } from "../components/Input";
+import { Link } from "../components/Link";
+import { useActiveWallet } from "../hooks/useActiveWallet";
+import { TestScriptAbi__factory } from "../sway-api";
 import { BN, BigNumberish, Script, bn } from "fuels";
 import { useState } from "react";
 import toast from "react-hot-toast";

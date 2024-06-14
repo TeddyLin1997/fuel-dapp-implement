@@ -1,15 +1,15 @@
-// import type { TestContractAbi } from "@/sway-api";
-import { TestContractAbi__factory } from "@/sway-api";
-import contractIds from "@/sway-api/contract-ids.json";
-import { FuelLogo } from "@/components/FuelLogo";
+import type { TestContractAbi } from "../sway-api";
+import { TestContractAbi__factory } from "../sway-api";
+import contractIds from "../sway-api/contract-ids.json";
+import { FuelLogo } from "../components/FuelLogo";
 import { bn } from "fuels";
 import { useState } from "react";
-import { Link } from "@/components/Link";
-import { Button } from "@/components/Button";
+import { Link } from "../components/Link";
+import { Button } from "../components/Button";
 import toast from "react-hot-toast";
-import { useActiveWallet } from "@/hooks/useActiveWallet";
+import { useActiveWallet } from "../hooks/useActiveWallet";
 import useAsync from "react-use/lib/useAsync";
-import { CURRENT_ENVIRONMENT } from "@/lib";
+import { CURRENT_ENVIRONMENT } from "../lib";
 
 const contractId =
   CURRENT_ENVIRONMENT === "local"
@@ -22,7 +22,7 @@ const hasScript = process.env.NEXT_PUBLIC_HAS_SCRIPT === "true";
 
 export default function Home() {
   const { wallet, walletBalance, refreshWalletBalance } = useActiveWallet();
-  const [contract, setContract] = useState<any>();
+  const [contract, setContract] = useState<TestContractAbi>();
   const [counter, setCounter] = useState<number>();
 
   useAsync(async () => {

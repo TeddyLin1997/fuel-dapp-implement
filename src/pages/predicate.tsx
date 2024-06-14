@@ -1,9 +1,9 @@
-import { Button } from "@/components/Button";
-import { FuelLogo } from "@/components/FuelLogo";
-import { Input } from "@/components/Input";
-import { Link } from "@/components/Link";
-import { useActiveWallet } from "@/hooks/useActiveWallet";
-import { TestPredicateAbi__factory } from "@/sway-api/predicates/index";
+import { Button } from "../components/Button";
+import { FuelLogo } from "../components/FuelLogo";
+import { Input } from "../components/Input";
+import { Link } from "../components/Link";
+import { useActiveWallet } from "../hooks/useActiveWallet";
+import { TestPredicateAbi__factory } from "../sway-api/predicates/index";
 import type { BN, InputValue, Predicate } from "fuels";
 import { bn } from "fuels";
 import { useState } from "react";

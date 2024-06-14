@@ -1,5 +1,5 @@
 import toast from "react-hot-toast";
-import { useBrowserWallet } from "@/hooks/useBrowserWallet";
+import { useBrowserWallet } from "../hooks/useBrowserWallet";
 
 const getTruncatedAddress = (address: string) => {
   return address.slice(0, 6) + "..." + address.slice(-4);

@@ -1,10 +1,10 @@
 import { Toaster } from "react-hot-toast";
 import { Link } from "./Link";
 import { Button } from "./Button";
-import { CURRENT_ENVIRONMENT, NODE_URL, TESTNET_FAUCET_LINK } from "@/lib";
+import { CURRENT_ENVIRONMENT, NODE_URL, TESTNET_FAUCET_LINK } from "../lib";
 import { useConnectUI, useDisconnect } from "@fuels/react";
 import { WalletDisplay } from "./WalletDisplay";
-import { useBrowserWallet } from "@/hooks/useBrowserWallet";
+import { useBrowserWallet } from "../hooks/useBrowserWallet";
 import Head from "next/head";
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
@@ -14,6 +14,9 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
   const { disconnect } = useDisconnect();
 
   const showAddNetworkButton = wallet && network && network?.url !== NODE_URL;
+  console.log('wallet', wallet)
+  console.log('network', network)
+  console.log('network?.url', network?.url)
 
   const tryToAddNetwork = () => {
     return alert(
